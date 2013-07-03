@@ -14,10 +14,12 @@ public class ProductDao {
     @PersistenceContext
     EntityManager entityManager;
 
+    @Transactional
     public List<Product> getAll(){
         return entityManager.createNamedQuery("product.findAll",Product.class).getResultList();
     }
 
+    @Transactional
     public Product get(Long id){
         return entityManager.find(Product.class,id);
     }
@@ -33,6 +35,7 @@ public class ProductDao {
         return entityManager.merge(product);
     }
 
+    @Transactional
     public void delete(Long id){
         entityManager.remove(id);
     }
