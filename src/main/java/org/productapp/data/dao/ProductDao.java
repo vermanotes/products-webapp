@@ -1,14 +1,17 @@
 package org.productapp.data.dao;
 
 import org.productapp.domain.Product;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
+@Repository
 public class ProductDao {
 
-    @PersistenceContext(unitName = "productDB")
+    @PersistenceContext
     EntityManager entityManager;
 
     public List<Product> getAll(){
@@ -19,10 +22,13 @@ public class ProductDao {
         return entityManager.find(Product.class,id);
     }
 
-    public void insert(Product product){
+    @Transactional
+    public Product insert(Product product){
         entityManager.persist(product);
+        return product;
     }
 
+    @Transactional
     public Product update(Product product){
         return entityManager.merge(product);
     }
