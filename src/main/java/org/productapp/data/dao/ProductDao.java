@@ -37,6 +37,7 @@ public class ProductDao {
 
     @Transactional
     public void delete(Long id){
-        entityManager.remove(id);
+        Product product = get(id);
+        entityManager.remove(product);
     }
 }
