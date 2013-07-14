@@ -1,10 +1,13 @@
 package org.productapp.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "PRODUCT")
 @NamedQuery(name = "product.findAll", query = "SELECT p FROM Product p")
+@XmlRootElement(name = "product")
 public class Product {
 
     @Id
@@ -21,6 +24,7 @@ public class Product {
     public Product() {
     }
 
+    @XmlElement(name = "id")
     public Long getId() {
         return id;
     }
@@ -29,6 +33,7 @@ public class Product {
         this.id = id;
     }
 
+    @XmlElement(name = "name")
     public String getName() {
         return name;
     }
@@ -37,6 +42,7 @@ public class Product {
         this.name = name;
     }
 
+    @XmlElement(name = "description")
     public String getDescription() {
         return description;
     }
