@@ -3,20 +3,22 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:oxm="http://www.springframework.org/schema/oxm"
        xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-                            http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+                            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <import resource="product-entity.xml"/>
 
     <context:annotation-config/>
     <context:component-scan base-package="org.productapp.controller"/>
 
-    <oxm:jaxb2-marshaller id="marshaller">
-        <oxm:class-to-be-bound name="org.productapp.domain.Product"/>
-        <oxm:class-to-be-bound name="org.productapp.infrastructure.jaxb.GenericListElementWrapper"/>
-    </oxm:jaxb2-marshaller>
+    <bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="packagesToScan">
+            <list>
+                <value>org.productapp.domain</value>
+                <value>org.productapp.infrastructure.jaxb</value>
+            </list>
+        </property>
+    </bean>
     <mvc:annotation-driven>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
@@ -42,6 +44,14 @@
                 </constructor-arg>
             </bean>
         </property>
+        <property name="viewResolvers">
+            <list>
+                <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+                    <property name="order" value="2"/>
+                    <property name="templateEngine" ref="templateEngine"/>
+                </bean>
+            </list>
+        </property>
         <property name="defaultViews">
             <list>
                 <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView"/>
@@ -62,5 +72,20 @@
         <property name="ignoreAcceptHeader" value="true"/>
     </bean>
 
+    <bean id="templateResolver"
+          class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+        <property name="prefix" value="/WEB-INF/templates/"/>
+        <property name="suffix" value=".html"/>
+        <property name="templateMode" value="HTML5"/>
+        <property name="cacheable" value="false" />
+    </bean>
 
+    <bean id="templateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
+        <property name="templateResolver" ref="templateResolver"/>
+    </bean>
+
+    <bean class="org.thymeleaf.spring3.view.ThymeleafViewResolver">
+        <property name="order" value="2"/>
+        <property name="templateEngine" ref="templateEngine"/>
+    </bean>
 </beans>

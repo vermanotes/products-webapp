@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -61,6 +62,6 @@ public class ProductControllerTest {
                 .content(objectMapper.writeValueAsString(product)))
                 .andExpect(status().isOk())
                 .andReturn();
-        assertEquals(mvcResult.getResponse().getContentType(),MediaType.APPLICATION_JSON_VALUE);
+        assertTrue(mvcResult.getResponse().getContentType().startsWith(MediaType.APPLICATION_JSON_VALUE));
     }
 }
