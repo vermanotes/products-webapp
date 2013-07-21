@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.xml.bind.annotation.XmlElementWrapper;
 import java.util.List;
@@ -22,12 +23,15 @@ public class ProductController {
     ProductDao productDao;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getAllProducts(ModelMap modelMap){
-        GenericListElementWrapper<Product> result = new GenericListElementWrapper<Product>();
+    public ModelAndView getAllProducts(){
+        ModelAndView result = new ModelAndView("index");
+        GenericListElementWrapper<Product> products = new GenericListElementWrapper<Product>();
         logger.info("Getting all entities from the database.");
-        result.setList(productDao.getAll());
-        modelMap.addAttribute("products",result);
-        return "index";
+        products.setList(productDao.getAll());
+        ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute("products",products);
+        result.addAllObjects(modelMap);
+        return result;
     }
 
 //    @RequestMapping(method = RequestMethod.GET)
