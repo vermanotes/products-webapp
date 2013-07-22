@@ -22,6 +22,7 @@ public class ProductController {
     @Autowired
     ProductDao productDao;
 
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllProducts(){
         ModelAndView result = new ModelAndView("index");
