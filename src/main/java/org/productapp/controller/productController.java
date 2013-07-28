@@ -1,6 +1,7 @@
 package org.productapp.controller;
 
 import org.productapp.data.dao.ProductDao;
+import org.productapp.data.dao.ProductDaoImpl;
 import org.productapp.domain.Product;
 import org.productapp.infrastructure.jaxb.GenericListElementWrapper;
 import org.slf4j.Logger;
@@ -10,9 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.xml.bind.annotation.XmlElementWrapper;
-import java.util.List;
 
 @Controller
 @RequestMapping("/products")

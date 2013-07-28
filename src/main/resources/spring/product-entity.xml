@@ -14,6 +14,13 @@
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="datasource"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="showSql" value="true"/>
+                <property name="generateDdl" value="false"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.H2Dialect"/>
+            </bean>
+        </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -22,6 +29,6 @@
 
     <tx:annotation-driven/>
 
-    <bean id="productDao" class="org.productapp.data.dao.ProductDao"/>
+    <bean id="productDao" class="org.productapp.data.dao.ProductDaoImpl"/>
 
 </beans>
