@@ -32,15 +32,6 @@ public class ProductController {
         return result;
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    @ResponseBody
-//    public GenericListElementWrapper<Product> getAllProducts(){
-//        GenericListElementWrapper<Product> result = new GenericListElementWrapper<Product>();
-//        logger.info("Getting all entities from the database.");
-//        result.setList(productDao.getAll());
-//        return result;
-//    }
-
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public Product insert(@RequestBody Product product){
