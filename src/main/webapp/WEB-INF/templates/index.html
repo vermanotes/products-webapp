@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"/>
     <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link href="/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 <body>
     <div class="container">
@@ -22,6 +23,11 @@
         <div class="row-fluid">
             <div class="span2">
                 <h1>Products</h1>
+            </div>
+            <div class="span10 well">
+                <ul class="tags">
+                    <li th:each="tag : ${tagCloud}" > <a href="#" th:text="${tag}">Tag</a></li>
+                </ul>
             </div>
         </div>
         <div class="row-fluid">

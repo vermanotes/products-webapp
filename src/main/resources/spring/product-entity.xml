@@ -34,6 +34,6 @@
 
     <tx:annotation-driven/>
 
-    <bean id="productDao" class="org.productapp.data.dao.ProductDaoImpl"/>
+    <bean id="productDao" class="org.productapp.data.dao.product.ProductDaoImpl"/>
 
 </beans>

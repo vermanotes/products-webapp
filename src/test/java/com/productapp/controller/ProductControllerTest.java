@@ -4,7 +4,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.productapp.controller.ProductController;
+import org.productapp.controller.product.ProductController;
 import org.productapp.domain.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

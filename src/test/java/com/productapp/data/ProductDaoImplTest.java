@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.productapp.data.dao.ProductDao;
+import org.productapp.data.dao.product.ProductDao;
 import org.productapp.domain.Product;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

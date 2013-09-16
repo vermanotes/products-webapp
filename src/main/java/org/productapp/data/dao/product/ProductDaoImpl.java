@@ -1,4 +1,4 @@
-package org.productapp.data.dao;
+package org.productapp.data.dao.product;
 
 import org.productapp.domain.Product;
 import org.productapp.infrastructure.jpa.AbstractCRUDDao;

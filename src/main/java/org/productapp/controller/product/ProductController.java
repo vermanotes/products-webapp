@@ -1,7 +1,6 @@
-package org.productapp.controller;
+package org.productapp.controller.product;
 
-import org.productapp.data.dao.ProductDao;
-import org.productapp.data.dao.ProductDaoImpl;
+import org.productapp.data.dao.product.ProductDao;
 import org.productapp.domain.Product;
 import org.productapp.infrastructure.jaxb.GenericListElementWrapper;
 import org.slf4j.Logger;
@@ -24,8 +23,8 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getAllProducts(){
         ModelAndView result = new ModelAndView("index");
-        GenericListElementWrapper<Product> products = new GenericListElementWrapper<Product>();
-        logger.info("Getting all entities from the database.");
+        GenericListElementWrapper<Product> products = new GenericListElementWrapper<>();
+
         products.setList(productDao.getAll());
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("products",products);
